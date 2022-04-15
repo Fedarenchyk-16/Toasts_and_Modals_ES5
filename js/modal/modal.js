@@ -4,18 +4,29 @@ function Modal(modalElement, config, onSubmit) {
 
     this.base = Modal.superclass.constructor.call(this, this.modalElement, "Modal");
 
-    console.log(this.base)
     createModal.call(this, this.config, this.base, onSubmit);
 }
 
 extend(Modal, Base);
+
+Modal.prototype.show = function () {
+    console.log("in modal")
+    if (this.basis.classList.contains("showModal")) {
+        this.basis.classList.remove("showModal");
+        this.basis.classList.add("hideModal");
+        this.modal_overlay.classList.remove("modal__overlay")
+    } else {
+        this.basis.classList.remove("hideModal");
+        this.basis.classList.add("showModal");
+        this.modal_overlay.classList.add("modal__overlay")
+    }
+}
 
 function overlayClick() {
     this.show();
 }
 
 function createModal(config, base, onSubmit) {
-    console.log(this)
     base.classList.add("modal", "hideModal");
 
     //CREATE FORM(CONTAINER) ELEMENT
@@ -55,7 +66,6 @@ function createModal(config, base, onSubmit) {
     //CREATE OVERLAY
     this.modal_overlay = document.createElement("div");
     this.modal_overlay.addEventListener("click", overlayClick.bind(this));
-    console.log(this.modal_overlay);
     base.appendChild(this.modal_overlay);
     base.before(this.modal_overlay);
 

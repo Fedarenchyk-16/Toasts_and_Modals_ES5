@@ -228,3 +228,13 @@
 .showModal {
   display: flex;
 }
+
+.showElement {
+  opacity: 1;
+  display: flex;
+}
+
+.hideElement {
+  opacity: 0;
+  display: none;
+}

@@ -4,9 +4,6 @@ function Base(element, nameOfElement) {
 
     const closeBtn = createCloseBtnHTML();
     this.basis.appendChild(closeBtn);
-    console.log("In base");
-    console.log("Name: " + nameOfElement);
-    console.log("Element:" + element);
 
     closeBtn.addEventListener("click", showMethod.bind(this))
     return this.basis;
@@ -35,27 +32,12 @@ function showAutomatically() {
 Base.prototype = {
     constructor: Base,
     show: function () {
-        if (this.nameOfElement === "Toast") {
-            if (this.basis.classList.contains("show")) {
-                this.basis.classList.remove("show");
-                this.basis.classList.add("hide");
-                this.clearTimer();
-            } else {
-                this.basis.classList.remove("hide");
-                this.basis.classList.add("show");
-                this.basis.classList.add("showAlert");
-                this.timer = setTimeout(showAutomatically.bind(this), 5000);
-            }
+        if (this.basis.classList.contains("showElement")) {
+            this.basis.classList.remove("showElement");
+            this.basis.classList.add("hideElement");
         } else {
-            if (this.basis.classList.contains("showModal")) {
-                this.basis.classList.remove("showModal");
-                this.basis.classList.add("hideModal");
-                this.modal_overlay.classList.remove("modal__overlay")
-            } else {
-                this.basis.classList.remove("hideModal");
-                this.basis.classList.add("showModal");
-                this.modal_overlay.classList.add("modal__overlay")
-            }
+            this.basis.classList.remove("hideElement");
+            this.basis.classList.add("showElement");
         }
     },
     clearTimer: function () {

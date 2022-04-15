@@ -34,6 +34,19 @@ const settingsArray = [
 
 ]
 
+Toast.prototype.show = function () {
+    console.log("in toast")
+    if (this.basis.classList.contains("show")) {
+        this.basis.classList.remove("show");
+        this.basis.classList.add("hide");
+    } else {
+        this.basis.classList.remove("hide");
+        this.basis.classList.add("show");
+        this.basis.classList.add("showAlert");
+        this.timer = setTimeout(showAutomatically.bind(this), 5000);
+    }
+}
+
 function createToast(config, base) {
     if (config.type === "warning") {
         createElementsHTML(base, 0, config.message);

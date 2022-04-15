@@ -65,7 +65,6 @@ const modal = new Modal(modalElement, configModal, onSubmit);
 
 //LISTENERS
 document.addEventListener("click", function (e) {
-    console.log("click")
     if (e.target === toastTriggerWarning) {
         toastW.show();
     }
